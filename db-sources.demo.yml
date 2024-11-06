@@ -1,0 +1,24 @@
+data-sources:
+  dataSources:
+    - name: postgres
+      strategy: single
+      url: jdbc:postgresql://postgres-db:5432/postgres
+      table: users
+      user: postgres
+      password: password
+      mapping:
+        id: user_id
+        username: login
+        name: first_name
+        surname: last_name
+    - name: mysql
+      strategy: single
+      url: jdbc:mysql://mysql-db:3306/testdb
+      table: users
+      user: testuser
+      password: testpass
+      mapping:
+        id: user_id
+        username: login
+        name: first_name
+        surname: last_name

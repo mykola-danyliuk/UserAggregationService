@@ -1,0 +1,24 @@
+data-sources:
+  data-sources:
+  - name: postgres-db
+    strategy: postgres
+    url: jdbc:postgresql://localhost:5432/testdb
+    table: users
+    user: testuser
+    password: testpass
+    mapping:
+      id: user_id
+      username: login
+      name: first_name
+      surname: last_name
+  - name: mysql-db
+    strategy: mysql
+    url: jdbc:mysql://localhost:3306/testdb
+    table: users
+    user: testuser
+    password: testpass
+    mapping:
+      id: user_id
+      username: login
+      name: first_name
+      surname: last_name
