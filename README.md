@@ -24,4 +24,14 @@ A Spring Boot application for aggregating user data from multiple databases.
    ```   
 
 ## Endpoints
-- `GET /users`: Fetches aggregated user data.
+`GET /users`: Fetches aggregated user data. Parameters:
+1.   login (optional): Filter by login.
+2.   firstName (optional): Filter by first name.
+3.   lastName (optional): Filter by last name.
+
+## Testing
+The project uses JUnit 5 and Testcontainers for integration tests.
+To run the tests, use the following command:
+   ```bash
+   mvn test
+   ```

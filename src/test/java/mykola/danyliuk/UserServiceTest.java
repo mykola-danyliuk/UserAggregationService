@@ -62,13 +62,76 @@ public class UserServiceTest {
 
     @Test
     public void testGetAllUsers() {
-        List<User> users = userService.getAllUsers();
+        List<User> users = userService.getAllUsers(null, null, null);
         assertThat(users).hasSize(2);
+        User jdoe = users.stream().filter(user -> user.username().equals("jdoe")).findFirst().orElseThrow();
+        assertThat(jdoe.name()).isEqualTo("John");
+        assertThat(jdoe.surname()).isEqualTo("Doe");
+        User asmith = users.stream().filter(user -> user.username().equals("asmith")).findFirst().orElseThrow();
+        assertThat(asmith.name()).isEqualTo("Alice");
+        assertThat(asmith.surname()).isEqualTo("Smith");
+    }
+
+    @Test
+    public void testGetUsersByLogin() {
+        List<User> users = userService.getAllUsers("jdoe", null, null);
+        assertThat(users).hasSize(1);
         assertThat(users.get(0).username()).isEqualTo("jdoe");
         assertThat(users.get(0).name()).isEqualTo("John");
         assertThat(users.get(0).surname()).isEqualTo("Doe");
-        assertThat(users.get(1).username()).isEqualTo("asmith");
-        assertThat(users.get(1).name()).isEqualTo("Alice");
-        assertThat(users.get(1).surname()).isEqualTo("Smith");
+    }
+
+    @Test
+    public void testGetUsersByFirstName() {
+        List<User> users = userService.getAllUsers(null, "John", null);
+        assertThat(users).hasSize(1);
+        assertThat(users.get(0).username()).isEqualTo("jdoe");
+        assertThat(users.get(0).name()).isEqualTo("John");
+        assertThat(users.get(0).surname()).isEqualTo("Doe");
+    }
+
+    @Test
+    public void testGetUsersByLastName() {
+        List<User> users = userService.getAllUsers(null, null, "Doe");
+        assertThat(users).hasSize(1);
+        assertThat(users.get(0).username()).isEqualTo("jdoe");
+        assertThat(users.get(0).name()).isEqualTo("John");
+        assertThat(users.get(0).surname()).isEqualTo("Doe");
+    }
+
+    @Test
+    public void testGetUsersByLoginAndFirstName() {
+        List<User> users = userService.getAllUsers("jdoe", "John", null);
+        assertThat(users).hasSize(1);
+        assertThat(users.get(0).username()).isEqualTo("jdoe");
+        assertThat(users.get(0).name()).isEqualTo("John");
+        assertThat(users.get(0).surname()).isEqualTo("Doe");
+    }
+
+    @Test
+    public void testGetUsersByLoginAndLastName() {
+        List<User> users = userService.getAllUsers("jdoe", null, "Doe");
+        assertThat(users).hasSize(1);
+        assertThat(users.get(0).username()).isEqualTo("jdoe");
+        assertThat(users.get(0).name()).isEqualTo("John");
+        assertThat(users.get(0).surname()).isEqualTo("Doe");
+    }
+
+    @Test
+    public void testGetUsersByFirstNameAndLastName() {
+        List<User> users = userService.getAllUsers(null, "John", "Doe");
+        assertThat(users).hasSize(1);
+        assertThat(users.get(0).username()).isEqualTo("jdoe");
+        assertThat(users.get(0).name()).isEqualTo("John");
+        assertThat(users.get(0).surname()).isEqualTo("Doe");
+    }
+
+    @Test
+    public void testGetUsersByLoginFirstNameAndLastName() {
+        List<User> users = userService.getAllUsers("jdoe", "John", "Doe");
+        assertThat(users).hasSize(1);
+        assertThat(users.get(0).username()).isEqualTo("jdoe");
+        assertThat(users.get(0).name()).isEqualTo("John");
+        assertThat(users.get(0).surname()).isEqualTo("Doe");
     }
 }
