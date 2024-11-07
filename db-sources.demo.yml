@@ -1,7 +1,7 @@
 data-sources:
   dataSources:
     - name: postgres
-      strategy: single
+      strategy: postgres
       url: jdbc:postgresql://postgres-db:5432/postgres
       table: users
       user: postgres
@@ -12,7 +12,7 @@ data-sources:
         name: first_name
         surname: last_name
     - name: mysql
-      strategy: single
+      strategy: mysql
       url: jdbc:mysql://mysql-db:3306/testdb
       table: users
       user: testuser

@@ -2,7 +2,8 @@
 # User Aggregation Service
 
 ## Overview
-A Spring Boot application for aggregating user data from multiple databases.
+A Spring Boot application for aggregating user data from multiple databases. 
+**Currently, the application supports two databases: MySQL and PostgreSQL.**
 
 ## Running the Application
 1. Build the project using Maven.
@@ -14,7 +15,10 @@ A Spring Boot application for aggregating user data from multiple databases.
    docker-compose -f docker-compose.demo.yml up
    ```   
 3. Access the application at `http://localhost:8080/users`.
-4. To stop the application, use the following command:
+
+4. Access the Swagger UI at `http://localhost:8080/swagger-ui.html`.
+
+5. To stop the application, use the following command:
    ```bash
    docker-compose -f docker-compose.demo.yml down
    ```   
